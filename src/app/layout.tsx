@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     siteName: "Spera Humanoid",
     images: [
       {
-        url: "/spera-h1.png",
+        url: "/spera-og.png",
         width: 1200,
         height: 630,
-        alt: "Spera H-1 Humanoid Robot Platform",
+        alt: "Spera H-1: Autonomous Security Humanoid",
       },
     ],
     type: "website",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Spera Humanoids | Next-Gen Humanoid Security",
     description: "Designed for Security. Built to Evolve. Meet the Spera H-1 Humanoid Platform.",
-    images: ["/spera-h1.png"],
+    images: ["/spera-og.png"],
   },
 };
 
