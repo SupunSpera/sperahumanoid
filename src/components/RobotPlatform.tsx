@@ -56,7 +56,7 @@ export default function RobotPlatform() {
             className="lg:col-span-5 min-h-[500px] lg:min-h-0 bg-black border border-white/[0.06] rounded relative overflow-hidden group"
           >
             <Image
-              src="/robot-portrait-CtrsnEHc.jpg"
+              src="/spera-h1-portrait.png"
               alt="Spera H-1 Humanoid Platform Robot Standing Full Body"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
@@ -87,27 +87,32 @@ export default function RobotPlatform() {
               — and a human operator can take control at any moment.
             </p>
 
-            {/* Specifications Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-b border-white/[0.06] py-6 my-2">
-              {specs.map((spec) => (
-                <div key={spec.label} className="border-b border-white/[0.03] pb-3 last:border-0 sm:last:border-b">
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-brand-cyan/60 block">
-                    {spec.label}
-                  </span>
-                  <span className="font-sans text-xs font-semibold text-white mt-1 block">
-                    {spec.value}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {/* Specs & Video Feed Sub-grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch border-t border-b border-white/[0.06] py-6 my-2">
+              {/* Specs Column */}
+              <div className="grid grid-cols-1 gap-4 justify-between h-full pr-0 md:pr-6 md:border-r border-white/[0.06]">
+                {specs.map((spec) => (
+                  <div key={spec.label} className="border-b border-white/[0.03] pb-3 last:border-0">
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-brand-cyan/60 block">
+                      {spec.label}
+                    </span>
+                    <span className="font-sans text-xs font-semibold text-white mt-1 block">
+                      {spec.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
-            {/* Embedded Live Walk Demo Feed */}
-            <div className="w-full">
-              <HUDFeed
-                label="ROBOT WALKING — MOVEMENT DEMO"
-                subLabel="H-H1 — SPERA-H1 — 0622"
-                stats={hudStats}
-              />
+              {/* Video Feed Column */}
+              <div className="flex flex-col justify-center h-full min-h-[300px]">
+                <HUDFeed
+                  label="ROBOT WALKING — MOVEMENT DEMO"
+                  subLabel="H-H1 — SPERA-H1 — 0622"
+                  bgImage="/spera-corporate-patrol.png"
+                  videoUrl="/spera-walking.mp4"
+                  stats={hudStats}
+                />
+              </div>
             </div>
 
           </motion.div>

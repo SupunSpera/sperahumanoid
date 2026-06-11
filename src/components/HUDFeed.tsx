@@ -13,11 +13,13 @@ interface HUDFeedProps {
   label: string;
   subLabel?: string;
   bgImage?: string;
+  videoUrl?: string;
+  hidePlayButton?: boolean;
   stats?: HUDStat[];
 }
 
-export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, stats }: HUDFeedProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, videoUrl, hidePlayButton = false, stats }: HUDFeedProps) {
+  const [isPlaying, setIsPlaying] = useState(hidePlayButton || false);
   const [telemetry, setTelemetry] = useState({
     lat: 34.0522,
     lng: -118.2437,
@@ -29,6 +31,35 @@ export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, 
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Control video element playback state
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.play().catch(err => {
+        console.warn("Video play failed or interrupted:", err);
+      });
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [isPlaying]);
+
+  // Handle auto-play behavior when hidePlayButton is active
+  useEffect(() => {
+    if (hidePlayButton) {
+      setIsPlaying(true);
+      setTelemetry(prev => ({
+        ...prev,
+        fps: 60,
+        bitrate: 8.4,
+        lockCount: Math.floor(Math.random() * 4) + 1,
+      }));
+    }
+  }, [hidePlayButton]);
 
   // Toggle play state and set initial playing state
   const handlePlayToggle = () => {
@@ -162,24 +193,7 @@ export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, 
         ctx.moveTo(width - padding - size, height - padding); ctx.lineTo(width - padding, height - padding); ctx.lineTo(width - padding, height - padding + size);
         ctx.stroke();
 
-        // Simulated Object Detection Box (Mocking Target Tracking)
-        if (frame % 300 < 200) {
-          const boxX = width * 0.3 + Math.sin(frame * 0.01) * 30;
-          const boxY = height * 0.45 + Math.cos(frame * 0.007) * 20;
-          const boxW = 80;
-          const boxH = 120;
 
-          // Drawing target borders
-          ctx.strokeStyle = "rgba(255, 62, 62, 0.6)";
-          ctx.lineWidth = 1.5;
-          ctx.strokeRect(boxX, boxY, boxW, boxH);
-          
-          // Target Lock text
-          ctx.fillStyle = "rgba(255, 62, 62, 0.8)";
-          ctx.font = "9px monospace";
-          ctx.fillText("TARGET [01] LOCK", boxX, boxY - 6);
-          ctx.fillText("DIST: 14.8m", boxX, boxY + boxH + 12);
-        }
 
         // Camera Static / Noise lines (random horizontal glitches)
         if (Math.random() < 0.08) {
@@ -214,7 +228,19 @@ export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, 
     <div className="relative group border border-brand-cyan/10 bg-dark-bg/60 rounded overflow-hidden flex flex-col w-full h-full">
       {/* Background image / canvas wrapper */}
       <div className="relative flex-grow min-h-[260px] md:min-h-[300px] overflow-hidden flex items-center justify-center bg-black">
-        {bgImage ? (
+        {videoUrl ? (
+          <video
+            ref={videoRef}
+            src={`${videoUrl}#t=0.1`}
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className={`absolute inset-0 w-full h-full object-contain select-none transition-all duration-700 ${
+              isPlaying ? "opacity-60" : "opacity-20 filter grayscale"
+            }`}
+          />
+        ) : bgImage ? (
           <Image
             src={bgImage}
             alt={label}
@@ -282,17 +308,19 @@ export default function HUDFeed({ label, subLabel = "SPERA-H1 - 0622", bgImage, 
         )}
 
         {/* Play/Pause Button overlay */}
-        <button
-          onClick={handlePlayToggle}
-          aria-label={isPlaying ? "Pause feed" : "Play feed"}
-          className={`z-30 w-16 h-16 rounded-full flex items-center justify-center border transition-all duration-300 backdrop-blur-xs ${
-            isPlaying
-              ? "bg-black/30 border-brand-cyan/40 hover:bg-black/60 text-brand-cyan scale-95"
-              : "bg-brand-cyan/10 border-brand-cyan/30 hover:border-brand-cyan hover:scale-110 text-white cursor-pointer box-glow-cyan"
-          }`}
-        >
-          {isPlaying ? <Pause size={24} className="fill-brand-cyan" /> : <Play size={24} className="ml-1 fill-white" />}
-        </button>
+        {!hidePlayButton && (
+          <button
+            onClick={handlePlayToggle}
+            aria-label={isPlaying ? "Pause feed" : "Play feed"}
+            className={`z-30 w-16 h-16 rounded-full flex items-center justify-center border transition-all duration-300 backdrop-blur-xs ${
+              isPlaying
+                ? "bg-black/30 border-brand-cyan/40 hover:bg-black/60 text-brand-cyan scale-95"
+                : "bg-brand-cyan/10 border-brand-cyan/30 hover:border-brand-cyan hover:scale-110 text-white cursor-pointer box-glow-cyan"
+            }`}
+          >
+            {isPlaying ? <Pause size={24} className="fill-brand-cyan" /> : <Play size={24} className="ml-1 fill-white" />}
+          </button>
+        )}
       </div>
 
       {/* Description / Metadata footer bar of HUD */}

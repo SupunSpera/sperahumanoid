@@ -57,6 +57,7 @@ export default function VideoGallery() {
                 label="WALKING DEMO"
                 subLabel="H-H1 — SPERA-H1 — 9267"
                 bgImage="/spera-corporate-patrol.png"
+                videoUrl="/spera-walking.mp4"
               />
             </motion.div>
 
@@ -67,6 +68,7 @@ export default function VideoGallery() {
                   label="SIDE MOVEMENT DEMO"
                   subLabel="H-H1 — SPERA-H1 — 8607"
                   bgImage="/spera-side-movement.png"
+                  videoUrl="/spera-side.mp4"
                 />
               </motion.div>
               <motion.div variants={itemVariants} className="flex-grow">
@@ -74,35 +76,14 @@ export default function VideoGallery() {
                   label="BACKWARD MOVEMENT DEMO"
                   subLabel="H-H1 — SPERA-H1 — 7553"
                   bgImage="/spera-backward-movement.png"
+                  videoUrl="/spera-backward.mp4"
                 />
               </motion.div>
             </div>
           </div>
 
           {/* Row 2: Arm & Hand Motion, Human Interaction, Security Patrol */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div variants={itemVariants}>
-              <HUDFeed
-                label="ARM & HAND MOTION"
-                subLabel="H-H1 — SPERA-H1 — 2982"
-                bgImage="/spera-arm-motion.png"
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <HUDFeed
-                label="HUMAN INTERACTION"
-                subLabel="H-H1 — SPERA-H1 — 5876"
-                bgImage="/spera-human-interaction.png"
-              />
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <HUDFeed
-                label="SECURITY PATROL"
-                subLabel="H-H1 — SPERA-H1 — 9128"
-                bgImage="/spera-security-patrol.png"
-              />
-            </motion.div>
-          </div>
+
 
           {/* Row 3: Operator Control (Left aligned) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

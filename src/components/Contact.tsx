@@ -67,7 +67,7 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* Left Side: Contact Information */}
           <div className="lg:col-span-5 space-y-12">
             <div className="space-y-3">
@@ -94,10 +94,10 @@ export default function Contact() {
                     EMAIL
                   </span>
                   <a
-                    href="mailto:contact@sperahumanoids.com"
+                    href="mailto:info@speralabs.com"
                     className="font-sans text-sm font-semibold text-white hover:text-brand-cyan transition-colors mt-0.5 block"
                   >
-                    contact@sperahumanoids.com
+                    info@speralabs.com
                   </a>
                 </div>
               </div>
@@ -112,10 +112,10 @@ export default function Contact() {
                     OPERATIONS
                   </span>
                   <a
-                    href="tel:+10000000000"
+                    href="tel:(+94) 112 144 533"
                     className="font-sans text-sm font-semibold text-white hover:text-brand-cyan transition-colors mt-0.5 block"
                   >
-                    +1 (000) 000-0000
+                    (+94) 112 144 533
                   </a>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function Contact() {
                     <Terminal size={14} className="animate-pulse" />
                     <span className="font-bold tracking-wider">SPERA SECURE CONSOLE</span>
                   </div>
-                  
+
                   <div className="space-y-1.5 max-h-[240px] overflow-y-auto pt-2">
                     {progressLog.map((log, i) => (
                       <div key={i} className="flex items-start">

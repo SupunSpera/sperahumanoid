@@ -8,6 +8,7 @@ interface Step {
   title: string;
   desc: string;
   consoleMsg: string;
+  bgImage: string;
 }
 
 export default function HowItWorks() {
@@ -17,36 +18,42 @@ export default function HowItWorks() {
       title: "Mission Issued",
       desc: "Robot receives mission parameters or patrol instruction from the operator console.",
       consoleMsg: "LINK BIND: UPLOADING FLIGHT & PATROL VECTORS...",
+      bgImage: "/spera-corporate-patrol.png",
     },
     {
       num: "02",
       title: "Environment Traversal",
       desc: "H-1 moves through the environment using pre-mapped routes and dynamic local navigation.",
       consoleMsg: "PATHFINDING: KINEMATIC RESOLVER ACTIVE. GAIT STABILIZED.",
+      bgImage: "/spera-side-movement.png",
     },
     {
       num: "03",
       title: "Perception",
       desc: "Sensors and cameras observe surroundings, scanning for anomalous events and objects.",
       consoleMsg: "PERCEPTION SYSTEM: SCANNING LIDAR & THERMAL MATRIX...",
+      bgImage: "/spera-security-patrol.png",
     },
     {
       num: "04",
       title: "AI Layer",
       desc: "On-device AI localizes detection, supports communication and decision-support logic.",
       consoleMsg: "COGNITIVE LAYER: LOCAL INFERENCE RUNNING (LLM ALIGN).",
+      bgImage: "/spera-arm-motion.png",
     },
     {
       num: "05",
       title: "Operator Override",
       desc: "A human operator can take remote control at any moment for high-stakes response.",
       consoleMsg: "OVERRIDE LINK: WEARABLE CONTROLLER READY FOR CAPTURE.",
+      bgImage: "/spera-human-interaction.png",
     },
     {
       num: "06",
       title: "Record & Review",
       desc: "Every event is captured, encrypted locally, and synced for after-action review.",
       consoleMsg: "TELEMETRY SYNC: ARCHIVING LOGS OVER AES-256 LINK.",
+      bgImage: "/spera-h1-portrait.png",
     },
   ];
 
@@ -145,6 +152,8 @@ export default function HowItWorks() {
               <HUDFeed
                 label="OPERATOR CONTROL — CONSOLE VIEW"
                 subLabel={`SYS_STEP — SPERA_STEP_${steps[activeIdx].num}`}
+                bgImage={steps[activeIdx].bgImage}
+                hidePlayButton={true}
                 stats={consoleStats}
               />
             </div>
