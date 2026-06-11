@@ -1,0 +1,81 @@
+I have attached a website design image. Analyze the image carefully and develop a pixel-perfect, responsive single-page website that matches the design as closely as possible.
+
+Requirements
+Design Implementation
+Use the attached image as the primary design reference.
+Match:
+Layout structure
+Typography
+Colors
+Spacing
+Margins and paddings
+Buttons
+Cards
+Icons
+Shadows
+Border radius
+Animations
+Hover effects
+Ensure the final implementation looks visually identical to the provided design.
+Technology Stack
+Frontend: HTML5, CSS3, JavaScript
+Preferred: Next.js + TypeScript + Tailwind CSS
+Use reusable and clean components.
+Follow modern frontend best practices.
+Responsive Design
+
+Create fully responsive layouts for:
+
+Desktop (1920px+)
+Laptop (1440px)
+Tablet (768px)
+Mobile (375px)
+Performance
+Optimize images.
+Lazy load sections where appropriate.
+Follow Core Web Vitals best practices.
+Ensure fast page load times.
+Animations
+
+Add smooth modern animations:
+
+Fade-in on scroll
+Button hover animations
+Card hover effects
+Smooth scrolling navigation
+Subtle section transitions
+Code Quality
+Use semantic HTML.
+Use clean folder structure.
+Create reusable components.
+Follow TypeScript best practices.
+Add comments where necessary.
+SEO
+Add proper meta tags.
+Open Graph tags.
+Semantic heading structure (H1-H6).
+Image alt tags.
+Accessibility
+WCAG-friendly contrast.
+Keyboard navigation support.
+Proper ARIA labels.
+Screen-reader friendly structure.
+Deliverables
+Complete source code.
+Responsive implementation.
+All reusable components.
+Tailwind styling.
+Assets organized properly.
+Production-ready code.
+Important
+
+Before generating code:
+
+Analyze the attached image in detail.
+Identify every section.
+Explain the structure you detected.
+Then generate the complete implementation section by section.
+Do not simplify the design.
+Replicate the exact visual appearance shown in the image.
+
+The goal is to create a professional production-ready website that looks nearly identical to the provided design image.
